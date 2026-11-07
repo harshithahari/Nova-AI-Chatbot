@@ -75,45 +75,76 @@ def load_model():
 
 
 # ---------------- CUSTOM CSS ----------------
-
 st.markdown("""
 <style>
 
-/* Main application */
+/* Main background */
 .stApp {
-    background: #0b1020;
-    color: #f8fafc;
-}
-
-/* Header */
-header[data-testid="stHeader"] {
-    background: #0b1020;
+    background: #0b1020 !important;
+    color: #f8fafc !important;
 }
 
 /* Main content */
 .main .block-container {
     max-width: 1200px;
-    padding: 2rem 2rem 2rem 2rem;
+    padding: 2rem 2rem 1rem 2rem;
 }
 
-/* Text visibility */
-[data-testid="stMarkdownContainer"],
-[data-testid="stMarkdownContainer"] p,
-[data-testid="stMarkdownContainer"] li,
-[data-testid="stMarkdownContainer"] h1,
-[data-testid="stMarkdownContainer"] h2,
-[data-testid="stMarkdownContainer"] h3 {
-    color: #f8fafc;
+/* Header */
+header[data-testid="stHeader"] {
+    background: #0b1020 !important;
 }
 
 /* Sidebar */
 [data-testid="stSidebar"] {
-    background: #111827;
+    background: #111827 !important;
+}
+
+/* All text */
+.stApp p,
+.stApp label,
+.stApp h1,
+.stApp h2,
+.stApp h3,
+.stApp span,
+.stApp li {
+    color: #f8fafc;
+}
+
+/* Login and signup forms */
+[data-testid="stForm"] {
+    background: #151f31 !important;
+    border: 1px solid #29364b;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+/* Login and signup input fields */
+[data-testid="stTextInput"] input {
+    background: #0b1020 !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    border: 1px solid #465a80 !important;
+    border-radius: 10px !important;
+    caret-color: white !important;
+}
+
+/* Input placeholder */
+[data-testid="stTextInput"] input::placeholder {
+    color: #aab7cc !important;
+    -webkit-text-fill-color: #aab7cc !important;
+    opacity: 1 !important;
+}
+
+/* Input focus */
+[data-testid="stTextInput"] input:focus {
+    border: 2px solid #60a5fa !important;
+    box-shadow: none !important;
 }
 
 /* Hero section */
 .hero {
-    padding: 28px;
+    padding: 25px;
     border-radius: 18px;
     background: linear-gradient(
         120deg,
@@ -122,193 +153,112 @@ header[data-testid="stHeader"] {
         #164e63
     );
     margin-bottom: 25px;
-    width: 100%;
-    box-sizing: border-box;
 }
 
 .hero h1 {
     color: white !important;
-    font-size: 2.3rem;
 }
 
 .hero p {
     color: #dbeafe !important;
-    font-size: 1.1rem;
 }
 
 /* Chat messages */
 [data-testid="stChatMessage"] {
-    background: #151f31;
+    background: #151f31 !important;
+    border: 1px solid #29364b !important;
     border-radius: 15px;
-    border: 1px solid #29364b;
     padding: 15px;
-    margin-bottom: 12px;
-    width: 100%;
-    box-sizing: border-box;
 }
 
-/* Chat message text */
-[data-testid="stChatMessage"] p,
-[data-testid="stChatMessage"] li {
-    color: #f8fafc !important;
-    line-height: 1.65;
-    overflow-wrap: anywhere;
-}
-
-/* Chat input */
+/* Chat input outer area */
 [data-testid="stChatInput"] {
     background: #151f31 !important;
-    border: 1px solid #465a80 !important;
-    border-radius: 14px !important;
-}
-
-[data-testid="stChatInput"] textarea {
-    color: white !important;
-    background: transparent !important;
-}
-
-[data-testid="stChatInput"] textarea::placeholder {
-    color: #aab7cc !important;
-}
-
-/* Buttons */
-.stButton > button {
-    border-radius: 10px;
-    background: #1b2940;
-    color: white;
-    border: 1px solid #465a80;
-    width: 100%;
-    min-height: 42px;
-}
-
-.stButton > button:hover {
-    background: #293b5c;
-    color: white;
-    border-color: #60a5fa;
-}
-
-/* Forms */
-[data-testid="stForm"] {
-    background: #111827;
-    border: 1px solid #29364b;
-    border-radius: 15px;
-    padding: 18px;
-}
-
-/* Input fields */
-.stTextInput input {
-    background: #1f2937;
-    color: white;
-    border-radius: 9px;
-}
-
-/* Information boxes */
-[data-testid="stAlert"] {
-    border-radius: 12px;
-}
-
-/* Mobile responsive design */
-@media screen and (max-width: 768px) {
-
-    .main .block-container {
-        padding: 1rem 0.7rem 5rem 0.7rem !important;
-        max-width: 100% !important;
-        width: 100% !important;
-    }
-
-    .hero {
-        padding: 18px !important;
-        border-radius: 14px !important;
-        margin-bottom: 16px !important;
-    }
-
-    .hero h1 {
-        font-size: 1.55rem !important;
-        line-height: 1.3 !important;
-    }
-
-    .hero p {
-        font-size: 0.9rem !important;
-        line-height: 1.5 !important;
-    }
-
-    [data-testid="stChatMessage"] {
-        padding: 10px !important;
-        border-radius: 13px !important;
-        margin-bottom: 10px !important;
-        width: 100% !important;
-    }
-
-    [data-testid="stChatMessage"] p,
-    [data-testid="stChatMessage"] li {
-        font-size: 0.94rem !important;
-        line-height: 1.6 !important;
-        overflow-wrap: anywhere !important;
-    }
-
-   /* Fix mobile chat input visibility */
-[data-testid="stChatInput"] {
-    background-color: #151f31 !important;
     border: 2px solid #465a80 !important;
     border-radius: 14px !important;
 }
 
+/* Chat input text */
 [data-testid="stChatInput"] textarea {
+    background: #151f31 !important;
     color: #ffffff !important;
     -webkit-text-fill-color: #ffffff !important;
-    background-color: transparent !important;
-    caret-color: #ffffff !important;
+    caret-color: white !important;
     font-size: 16px !important;
 }
 
+/* Chat input placeholder */
 [data-testid="stChatInput"] textarea::placeholder {
     color: #aab7cc !important;
     -webkit-text-fill-color: #aab7cc !important;
     opacity: 1 !important;
 }
 
+/* Send button */
 [data-testid="stChatInput"] button {
-    background-color: #2563eb !important;
+    background: #2563eb !important;
+    color: white !important;
+    border-radius: 10px !important;
+}
+
+/* Login and signup buttons */
+.stButton button,
+.stFormSubmitButton button {
+    background: #1d4ed8 !important;
+    color: white !important;
+    border: 1px solid #3b82f6 !important;
+    border-radius: 10px !important;
+    width: 100%;
+}
+
+/* Tabs */
+button[data-baseweb="tab"] {
     color: white !important;
 }
-    /* Headings */
-    h1 {
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+
+    .main .block-container {
+        padding: 1rem 0.75rem !important;
+    }
+
+    .hero {
+        padding: 18px;
+        border-radius: 14px;
+        margin-bottom: 18px;
+    }
+
+    .hero h1 {
         font-size: 1.6rem !important;
     }
 
-    h2 {
-        font-size: 1.3rem !important;
+    .hero p {
+        font-size: 0.95rem !important;
     }
 
-    h3 {
-        font-size: 1.1rem !important;
+    [data-testid="stChatMessage"] {
+        padding: 10px;
+        border-radius: 13px;
     }
 
-    /* Buttons */
-    .stButton > button {
-        min-height: 44px !important;
-        font-size: 0.9rem !important;
+    [data-testid="stTextInput"] input {
+        font-size: 16px !important;
     }
 
-    /* Forms */
-    [data-testid="stForm"] {
-        padding: 12px !important;
+    [data-testid="stChatInput"] textarea {
+        font-size: 16px !important;
     }
 
-    /* Prevent wide content */
-    .stMarkdown,
-    [data-testid="stMarkdownContainer"] {
-        max-width: 100% !important;
-        overflow-wrap: anywhere !important;
+    [data-testid="stHorizontalBlock"] {
+        flex-wrap: wrap;
+        gap: 10px;
     }
 
-    /* Tables and code */
-    [data-testid="stDataFrame"],
-    pre,
-    code {
-        max-width: 100% !important;
-        overflow-x: auto !important;
+    [data-testid="stHorizontalBlock"] > [data-testid="column"] {
+        min-width: 100% !important;
     }
+
 }
 
 </style>
