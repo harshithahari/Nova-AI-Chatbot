@@ -246,28 +246,31 @@ header[data-testid="stHeader"] {
         overflow-wrap: anywhere !important;
     }
 
-    [data-testid="stChatInput"] {
-        width: 100% !important;
-        border-radius: 12px !important;
-    }
+   /* Fix mobile chat input visibility */
+[data-testid="stChatInput"] {
+    background-color: #151f31 !important;
+    border: 2px solid #465a80 !important;
+    border-radius: 14px !important;
+}
 
-    [data-testid="stChatInput"] textarea {
-        font-size: 16px !important;
-        color: white !important;
-    }
+[data-testid="stChatInput"] textarea {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    background-color: transparent !important;
+    caret-color: #ffffff !important;
+    font-size: 16px !important;
+}
 
-    /* Stack columns vertically */
-    [data-testid="stHorizontalBlock"] {
-        flex-wrap: wrap !important;
-        gap: 0.5rem !important;
-    }
+[data-testid="stChatInput"] textarea::placeholder {
+    color: #aab7cc !important;
+    -webkit-text-fill-color: #aab7cc !important;
+    opacity: 1 !important;
+}
 
-    [data-testid="stHorizontalBlock"] > [data-testid="column"] {
-        min-width: 100% !important;
-        width: 100% !important;
-        flex: 1 1 100% !important;
-    }
-
+[data-testid="stChatInput"] button {
+    background-color: #2563eb !important;
+    color: white !important;
+}
     /* Headings */
     h1 {
         font-size: 1.6rem !important;
