@@ -33,29 +33,46 @@ create_tables()
 
 # ---------------- CSS ----------------
 
+
+# ---------------- CSS ----------------
+
 st.markdown("""
 <style>
 
+/* Main app */
 .stApp {
     background: #0b1020;
-    color: white;
+    color: #f8fafc;
 }
 
+/* Streamlit header */
+header[data-testid="stHeader"] {
+    background: #0b1020;
+}
+
+/* Main content */
 .main .block-container {
     max-width: 1200px;
     padding: 2rem 2rem 1rem 2rem;
 }
 
+/* Text visibility */
+[data-testid="stMarkdownContainer"],
+[data-testid="stMarkdownContainer"] p,
+[data-testid="stMarkdownContainer"] li,
+[data-testid="stMarkdownContainer"] h1,
+[data-testid="stMarkdownContainer"] h2,
+[data-testid="stMarkdownContainer"] h3,
+.stMarkdown {
+    color: #f8fafc;
+}
+
+/* Sidebar */
 [data-testid="stSidebar"] {
-    min-width: 260px !important;
-    max-width: 260px !important;
     background: #111827;
 }
 
-[data-testid="stSidebar"] > div:first-child {
-    width: 260px !important;
-}
-
+/* Hero section */
 .hero {
     padding: 25px;
     border-radius: 18px;
@@ -69,19 +86,38 @@ st.markdown("""
 }
 
 .hero h1 {
-    color: white;
+    color: #ffffff !important;
 }
 
 .hero p {
-    color: #dbeafe;
+    color: #dbeafe !important;
 }
 
+/* Chat messages */
 [data-testid="stChatMessage"] {
     background: #151f31;
     border-radius: 15px;
     border: 1px solid #29364b;
+    padding: 15px;
 }
 
+/* Chat input area */
+[data-testid="stChatInput"] {
+    background: #151f31 !important;
+    border: 1px solid #465a80 !important;
+    border-radius: 14px !important;
+}
+
+[data-testid="stChatInput"] textarea {
+    color: #ffffff !important;
+    background: transparent !important;
+}
+
+[data-testid="stChatInput"] textarea::placeholder {
+    color: #aab7cc !important;
+}
+
+/* Buttons */
 .stButton > button {
     border-radius: 10px;
     background: #1b2940;
@@ -90,37 +126,56 @@ st.markdown("""
     width: 100%;
 }
 
+/* Mobile responsive design */
 @media (max-width: 768px) {
+
     .main .block-container {
-        padding: 1rem;
+        padding: 1rem 0.75rem 1rem 0.75rem;
+    }
+
+    .hero {
+        padding: 18px;
+        border-radius: 14px;
+        margin-bottom: 18px;
+    }
+
+    .hero h1 {
+        font-size: 1.7rem !important;
+    }
+
+    .hero p {
+        font-size: 0.95rem !important;
+    }
+
+    [data-testid="stChatMessage"] {
+        padding: 10px;
+        border-radius: 13px;
+        margin-bottom: 10px;
+    }
+
+    [data-testid="stChatInput"] {
+        border-radius: 12px !important;
+    }
+
+    [data-testid="stMarkdownContainer"] p,
+    [data-testid="stMarkdownContainer"] li {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    /* Stack columns on mobile */
+    [data-testid="stHorizontalBlock"] {
+        flex-wrap: wrap;
+    }
+
+    [data-testid="stHorizontalBlock"] > [data-testid="column"] {
+        min-width: 100% !important;
     }
 }
 
 </style>
 """, unsafe_allow_html=True)
 
-
-# ---------------- AI MODEL ----------------
-
-@st.cache_resource
-def load_model():
-    return ChatOpenAI(
-        model="gemma4:31b",
-        base_url="https://ollama.com/v1",
-        api_key=st.secrets["OLLAMA_API_KEY"],
-        temperature=0.7
-    )
-
-# ---------------- SESSION STATE ----------------
-
-if "logged_in" not in st.session_state:
-    st.session_state.logged_in = False
-
-if "user_id" not in st.session_state:
-    st.session_state.user_id = None
-
-if "active_chat" not in st.session_state:
-    st.session_state.active_chat = None
 
 
 # ---------------- LOGIN PAGE ----------------
@@ -466,3 +521,4 @@ if prompt:
         except Exception as e:
 
             st.error(f"AI Error: {e}")
+
