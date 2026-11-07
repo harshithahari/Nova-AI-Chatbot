@@ -260,6 +260,43 @@ button[data-baseweb="tab"] {
     }
 
 }
+/* Error messages */
+[data-testid="stAlert"] {
+    background-color: #3b1720 !important;
+    border: 1px solid #ef4444 !important;
+    border-radius: 10px !important;
+}
+
+[data-testid="stAlert"] p,
+[data-testid="stAlert"] div,
+[data-testid="stAlert"] span {
+    color: #fecaca !important;
+    -webkit-text-fill-color: #fecaca !important;
+}
+
+/* Warning messages */
+[data-testid="stAlert"][kind="warning"] {
+    background-color: #3b2d12 !important;
+}
+
+[data-testid="stAlert"][kind="warning"] p {
+    color: #fde68a !important;
+}
+
+/* Success messages */
+[data-testid="stAlert"][kind="success"] {
+    background-color: #123b2a !important;
+}
+
+[data-testid="stAlert"][kind="success"] p {
+    color: #bbf7d0 !important;
+}
+
+/* Error text visibility */
+.stException {
+    background: #3b1720 !important;
+    color: #fecaca !important;
+}
 
 </style>
 """, unsafe_allow_html=True)
